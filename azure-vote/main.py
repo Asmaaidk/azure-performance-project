@@ -18,7 +18,7 @@ from opencensus.ext.azure import metrics_exporter
 from opencensus.stats import stats as stats_module
 from opencensus.trace import config_integration
 
-insights_conn = 'InstrumentationKey=af897790-6bf3-4198-9c8d-fd22f6013ce5'
+insights_conn = 'InstrumentationKey=60b6ca54-bb9b-42d6-b55f-c5308ce910d8'
 
 # Logging
 config_integration.trace_integrations(['logging'])
@@ -66,6 +66,23 @@ else:
 
 # Redis Connection
 r = redis.Redis()
+
+"""
+# Redis configurations
+redis_server = os.environ['REDIS']
+
+# Redis Connection to another container
+try:
+    if "REDIS_PWD" in os.environ:
+        r = redis.StrictRedis(host=redis_server,
+                        port=6379,
+                        password=os.environ['REDIS_PWD'])
+    else:
+        r = redis.Redis(redis_server)
+    r.ping()
+except redis.ConnectionError:
+    exit('Failed to connect to Redis, terminating.')
+    """
 
 # Change title to host name to demo NLB
 if app.config['SHOWHOST'] == "true":

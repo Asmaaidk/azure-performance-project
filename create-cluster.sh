@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-resourceGroup="acdnd-c4-project"
+resourceGroup="cloud-demo"
 clusterName="udacity-cluster"
 
 # Install aks cli
@@ -13,15 +13,6 @@ echo "AKS CLI installed"
 
 # Create AKS cluster
 echo "Step 1 - Creating AKS cluster $clusterName"
-# Use either one of the "az aks create" commands below
-# For users working in their personal Azure account
-# This commmand will not work for the Cloud Lab users, because you are not allowed to create Log Analytics workspace for monitoring
-az aks create \
---resource-group $resourceGroup \
---name $clusterName \
---node-count 1 \
---enable-addons monitoring \
---generate-ssh-keys
 
 # For Cloud Lab users
 az aks create \
